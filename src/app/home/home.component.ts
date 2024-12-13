@@ -6,7 +6,7 @@ import { Todo } from '../shared/interfaces/todo';
   selector: 'app-home',
   template: `
     <h2>Todo</h2>
-    <!-- 'app-todo-form' is  -->
+    <!-- The 'app-todo-form' component is used here. When the 'todoSubmitted' event is emitted from this component, the 'createTodo' method is called with the event data ($event) as its argument. -->
     <app-todo-form (todoSubmitted)="createTodo($event)" />
   `,
   standalone: true,
