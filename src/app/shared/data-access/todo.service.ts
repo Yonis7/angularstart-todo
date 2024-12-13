@@ -12,9 +12,14 @@ export class TodoService {
   // This can be read publicly the perpose of this expression is to return the todos as a readonly array.
   todos = this.#todos.asReadonly();
 
-  // Syntax explained: 'addTodo' is the name of the method, 'todo' is the parameter, and 'Todo' is the type of the parameter. The purpose of this method is to add a new todo to the todos signal.
+  // This method is called 'addTodo'.
+  // - 'addTodo' is the name of the method.
+  // - 'todo' is the parameter, which means it is the input to the method.
+  // - 'Todo' is the type of the parameter, which means 'todo' should be an object with a title and description.
+  // The purpose of this method is to add a new todo item to the list of todos.
   addTodo(todo: Todo) {
-    // The purpose of this expression is to update the todos signal with a new array that includes the new todo.
+    // This line updates the list of todos by adding the new todo item to the existing list.
+    // It creates a new array that includes all the existing todos and the new todo item.
     this.#todos.update((todos) => [...todos, todo]);
   }
 }
