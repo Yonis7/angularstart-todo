@@ -6,6 +6,7 @@ import { Todo } from '../shared/interfaces/todo';
   selector: 'app-home',
   template: `
     <h2>Todo</h2>
+    <!-- 'app-todo-form' is  -->
     <app-todo-form (todoSubmitted)="createTodo($event)" />
   `,
   standalone: true,
