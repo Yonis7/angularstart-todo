@@ -12,7 +12,7 @@ import { Todo } from "../../shared/interfaces/todo";
       @for (todo of todos(); track $index) {
       <li>
         <!-- This is a list item (li) that displays the title of the current todo item.
-           - '{{ todo.title }}' is a placeholder that will be replaced with the actual title of the todo item. -->
+           - '{{ todo.title }}' is a placeholder that will be replaced with the actual title of the todo item.  -->
         <a>{{ todo.title }}</a>
       </li>
       } @empty {
@@ -23,7 +23,7 @@ import { Todo } from "../../shared/interfaces/todo";
   `,
 })
 export class TodoListComponent {
-  // todo is used to represent each todo item in the list of todos.
+  // todos is used to represent each todo item in the list of todos.
   // input.required is used to specify that the todos input is required.
   // Todo[] is used to specify that the todos input should be an array of Todo objects.
   todos = input.required<Todo[]>();
