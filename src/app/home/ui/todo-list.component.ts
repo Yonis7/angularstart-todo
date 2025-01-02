@@ -21,7 +21,11 @@ import { Todo } from "../../shared/interfaces/todo";
       }
     </ul>
   `,
+  standalone: true,
 })
+
+
+
 export class TodoListComponent {
   // todos is used to represent each todo item in the list of todos.
   // input.required is used to specify that the todos input is required.
