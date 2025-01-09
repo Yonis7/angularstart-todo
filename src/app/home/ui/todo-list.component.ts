@@ -28,6 +28,14 @@ import { RouterLink } from "@angular/router";
   // Tell Angular which features we need to use
   imports: [RouterLink], // We need RouterLink for our clickable links
   // This component can work on its own without needing other components
+  styles: [
+    `
+      ul {
+        margin: 0;
+        padding: 1rem;
+      }
+    `,
+  ],
   standalone: true,
 })
 export class TodoListComponent {
