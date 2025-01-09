@@ -1,34 +1,38 @@
 import { Component, input } from "@angular/core";
 import { Todo } from "../../shared/interfaces/todo";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-todo-list',
   template: `
+    <!-- ul stands for unordered list - it creates bullet points -->
     <ul>
-      <!-- The @for directive is used to loop through each item in the 'todos' list.
-       - 'todo' is a variable that represents the current item in the loop.
-       - 'todos()' is a function that returns the list of todo items.
-       - 'track $index' is used to keep track of the index (position) of each item in the list. -->
-      @for (todo of todos(); track $index) {
+      <!-- This is like a loop that goes through each todo item in our list
+          Imagine going through a stack of sticky notes one by one -->
+      @for (todo of todos(); track todo.id) {
+      <!-- li stands for list item - each todo gets its own bullet point -->
       <li>
-        <!-- This is a list item (li) that displays the title of the current todo item.
-           - '{{ todo.title }}' is a placeholder that will be replaced with the actual title of the todo item.  -->
-        <a>{{ todo.title }}</a>
+        <!-- This creates a clickable link to see more details about the todo
+               When clicked, it takes us to a page showing just that todo -->
+        <a routerLink="/detail/{{ todo.id }}">
+          <!-- Show the todo's title here -->
+          {{ todo.title }}
+        </a>
       </li>
       } @empty {
-      <!-- If the 'todos' list is empty, this message will be displayed. -->
+      <!-- If we have no todos, show this friendly message -->
       <li>Nothing to do!</li>
       }
     </ul>
   `,
+  // Tell Angular which features we need to use
+  imports: [RouterLink], // We need RouterLink for our clickable links
+  // This component can work on its own without needing other components
   standalone: true,
 })
-
-
-
 export class TodoListComponent {
-  // todos is used to represent each todo item in the list of todos.
-  // input.required is used to specify that the todos input is required.
-  // Todo[] is used to specify that the todos input should be an array of Todo objects.
+  // This creates a property called 'todos' that must be provided when using this component
+  // It's like saying "To use this component, you must give me a list of todos"
+  // The Todo[] means it must be a list (array) of Todo items
   todos = input.required<Todo[]>();
 }
