@@ -34,6 +34,17 @@ import { RouterLink } from "@angular/router";
         margin: 0;
         padding: 1rem;
       }
+      li {
+        list-style-type: none;
+        margin: 0.5rem 0;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     `,
   ],
   standalone: true,
