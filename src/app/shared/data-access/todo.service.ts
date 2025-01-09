@@ -1,25 +1,35 @@
+// We import the tools we need from Angular
+// Injectable means this service can be used by other parts of our app
+// signal is like a special container that can hold and update data
 import { Injectable, signal } from '@angular/core';
-import { Todo } from '../interfaces/todo';
+import { CreateTodo, Todo } from '../interfaces/todo';
 
+// @Injectable tells Angular this is a service
+// Think of this as a manager that handles all our todo-related tasks
+// 'root' means there's only one copy of this service for the whole app
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  // We only want this class to be able to
-  // update the signal (# makes it private). The purpose of this signal is to store the todos.
+  // This is like a private notebook where we keep our todos
+  // The # means only this service can write in the notebook
+  // signal<Todo[]> means it's a special notebook that can tell others when it changes
+  // [] means it starts empty
   #todos = signal<Todo[]>([]);
 
-  // This can be read publicly the perpose of this expression is to return the todos as a readonly array.
+  // This is like a read-only copy of our notebook
+  // Other parts of the app can look at the todos but can't change them directly
   todos = this.#todos.asReadonly();
 
-  // This method is called 'addTodo'.
-  // - 'addTodo' is the name of the method.
-  // - 'todo' is the parameter, which means it is the input to the method.
-  // - 'Todo' is the type of the parameter, which means 'todo' should be an object with a title and description.
-  // The purpose of this method is to add a new todo item to the list of todos.
-  addTodo(todo: Todo) {
-    // This line updates the list of todos by adding the new todo item to the existing list.
-    // It creates a new array that includes all the existing todos and the new todo item.
-    this.#todos.update((todos) => [...todos, todo]);
+  // This is like a method for adding a new page to our notebook
+  // todo: CreateTodo means we expect to receive information for a new todo
+  addTodo(todo: CreateTodo) {
+    // Update our notebook with the new todo
+    this.#todos.update((todos) => [
+      // Keep all the existing todos (like keeping all the old pages)
+      ...todos,
+      // Add the new todo with a unique ID (like adding a new page with today's date)
+      { ...todo, id: Date.now().toString() },
+    ]);
   }
 }
